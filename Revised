@@ -1,0 +1,74 @@
+using System;
+
+namespace QuittableAssignment
+{
+    // =========================================
+    // INTERFACE
+    // =========================================
+
+    // The IQuittable interface defines a contract.
+    // Any class that implements this interface must
+    // provide an implementation of the Quit() method.
+    public interface IQuittable
+    {
+        // Method that represents an object quitting
+        void Quit();
+    }
+
+    // =========================================
+    // EMPLOYEE CLASS
+    // =========================================
+
+    // The Employee class implements the IQuittable interface.
+    // This allows an Employee object to be treated as an
+    // IQuittable object through polymorphism.
+    public class Employee : IQuittable
+    {
+        // Stores the employee's first name
+        public string FirstName { get; set; }
+
+        // Stores the employee's last name
+        public string LastName { get; set; }
+
+        // Stores the employee's unique ID number
+        public int Id { get; set; }
+
+        // Implementation of the Quit() method required
+        // by the IQuittable interface
+        public void Quit()
+        {
+            // Display a message indicating the employee has quit
+            Console.WriteLine($"{FirstName} {LastName} (Employee ID: {Id}) has officially quit the company.");
+        }
+    }
+
+    // =========================================
+    // PROGRAM ENTRY POINT
+    // =========================================
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create an instance of the Employee class
+            Employee employee = new Employee
+            {
+                FirstName = "Charmarke",
+                LastName = "Brown",
+                Id = 2026
+            };
+
+            // POLYMORPHISM:
+            // The Employee object is referenced using
+            // the IQuittable interface type
+            IQuittable quittableEmployee = employee;
+
+            // Call the Quit() method through the interface reference
+            quittableEmployee.Quit();
+
+            // Keep the console window open so the output can be read
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
